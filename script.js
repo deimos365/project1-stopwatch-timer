@@ -8,8 +8,9 @@ window.onload = function() {
     let appendSeconds = document.querySelector('#seconds');
     let appendTens = document.querySelector('#tens');
 
-    let startBtn = document.querySelector('#start');
-    let stopBtn = document.querySelector('#stop');
+    let toggleBtn = document.querySelector('#toggle');
+    let isRunning = false;
+
     let resetBtn = document.querySelector('#reset');
 
     const startTimer = () => {
@@ -41,17 +42,23 @@ window.onload = function() {
         }
     }
 
-    startBtn.addEventListener("click", () => {
-        clearInterval(Interval);
-        Interval = setInterval(startTimer, 10);
-    });
-
-    stopBtn.addEventListener("click", () => {
-        clearInterval(Interval);
+    toggleBtn.addEventListener("click", () => {
+        if (isRunning) {
+            clearInterval(Interval);
+            toggleBtn.innerHTML = "Start";
+            isRunning = false;
+        } else {
+            Interval = setInterval(startTimer, 10);
+            toggleBtn.innerHTML = "Stop";
+            isRunning = true;
+        }
     });
 
     resetBtn.addEventListener("click", () => {
         clearInterval(Interval);
+        toggleBtn.innerHTML = "Start";
+        isRunning = false;
+        
         minutes = 0;
         seconds = 0;
         tens = 0;

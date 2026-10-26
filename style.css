@@ -16,7 +16,7 @@ body {
 }
 
 .container {
-    padding: 1rem;
+    padding: 1rem 1.4rem;
     max-width: 300px;
     text-align: center;
     position: relative;
